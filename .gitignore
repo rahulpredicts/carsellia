@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Replit specific (not needed for production)
+.replit
+replit.nix
+.config/
+replit.md
+
+# Test files
+test-*.js
+
+# Documentation (optional - remove these lines if you want docs in repo)
+# *.md
