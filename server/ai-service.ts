@@ -1,14 +1,10 @@
-// Using Replit AI Integrations for Gemini - billed to your Replit credits
+// Using Google Gemini AI for vehicle analysis
 import { GoogleGenAI, Type } from "@google/genai";
 import { z } from "zod";
 
-// Replit AI Integrations - no personal API key needed, charges go to your Replit credits
+// Initialize Gemini with standard API key
 const ai = new GoogleGenAI({
-  apiKey: process.env.AI_INTEGRATIONS_GEMINI_API_KEY || "",
-  httpOptions: {
-    apiVersion: "",
-    baseUrl: process.env.AI_INTEGRATIONS_GEMINI_BASE_URL || "",
-  },
+  apiKey: process.env.GEMINI_API_KEY || "",
 });
 
 export const vehicleAnalysisRequestSchema = z.object({
@@ -234,8 +230,8 @@ DECISION CRITERIA:
 }
 
 export async function analyzeVehicleDeal(request: VehicleAnalysisRequest): Promise<AIRecommendation> {
-  if (!process.env.AI_INTEGRATIONS_GEMINI_BASE_URL || !process.env.AI_INTEGRATIONS_GEMINI_API_KEY) {
-    throw new Error("Replit AI Integrations for Gemini not configured");
+  if (!process.env.GEMINI_API_KEY) {
+    throw new Error("GEMINI_API_KEY not configured. Please add it to environment variables.");
   }
 
   try {
@@ -377,5 +373,5 @@ function getDefaultRecommendation(request: VehicleAnalysisRequest): AIRecommenda
 }
 
 export function isAIServiceAvailable(): boolean {
-  return !!(process.env.AI_INTEGRATIONS_GEMINI_BASE_URL && process.env.AI_INTEGRATIONS_GEMINI_API_KEY);
+  return !!process.env.GEMINI_API_KEY;
 }
